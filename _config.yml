@@ -1,2 +1,9 @@
 title: Alejandro Elenes
 description: Energy systems researcher and engineer.
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
