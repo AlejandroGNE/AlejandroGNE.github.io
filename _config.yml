@@ -7,6 +7,13 @@ defaults:
       type: pages
     values:
       layout: default
+
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note
+
 collections:
   notes:
     output: true
