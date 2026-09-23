@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <style>
+      .site-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-bottom: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #e1e4e8; }
+      .site-name { font-size: 1.25rem; font-weight: 600; }
+      .site-nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; }
+      .site-nav a[aria-current="page"] { font-weight: 600; text-decoration: underline; text-underline-offset: 0.2em; }
+      .skip-link { position: absolute; left: -10000px; }
+      .skip-link:focus { position: static; }
+    </style>
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <a class="skip-link" href="#main-content">Skip to content</a>
+      <header class="site-header">
+        <a class="site-name" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          {% assign sections = 'Projects,Writing,Notes,About' | split: ',' %}
+          {% for section in sections %}
+            {% assign section_path = section | downcase | prepend: '/' %}
+            {% assign section_html = section_path | append: '.html' %}
+            {% assign section_directory = section_path | append: '/' %}
+            <a href="{{ section_path | relative_url }}"{% if page.url == section_path or page.url == section_html or page.url contains section_directory %} aria-current="page"{% endif %}>{{ section }}</a>
+            {% unless forloop.last %}<span aria-hidden="true">·</span>{% endunless %}
+          {% endfor %}
+        </nav>
+      </header>
+      <main id="main-content" tabindex="-1">
+        {{ content }}
+      </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
