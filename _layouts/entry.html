@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article>
+  <header>
+    <h1>{{ page.title | escape }}</h1>
+    <p><small>
+      {% case page.collection %}
+        {% when 'projects' %}Project
+        {% when 'writing' %}Article
+        {% when 'notes' %}Note
+      {% endcase %}
+      {% if page.date %} · <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>{% endif %}
+    </small></p>
+    {% if page.description %}<p>{{ page.description | escape }}</p>{% endif %}
+    {% if page.collection == 'projects' and page.links.size > 0 %}
+      <ul aria-label="Project resources">
+        {% for link in page.links %}
+          <li><a href="{{ link.url | relative_url | escape }}">{{ link.label | escape }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </header>
+  {{ content }}
+  {% if page.tags.size > 0 %}<p><small>Tags: {{ page.tags | join: ', ' | escape }}</small></p>{% endif %}
+  <p><a href="{{ page.collection | prepend: '/' | relative_url }}">Back to {{ page.collection | capitalize }}</a></p>
+</article>
