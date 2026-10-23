@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website Publisher"
+  short_description: "Write and publish Alejandro Elenes's website content"
+  default_prompt: "Use $website-publisher to prepare content for my personal website."

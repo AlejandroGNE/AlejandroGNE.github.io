@@ -18,3 +18,11 @@ collections:
   notes:
     output: true
     permalink: /notes/:name/
+
+exclude:
+  - AGENTS.md
+  - README.md
+  - docs
+  - scripts
+  - tools
+  - _templates
